@@ -21,7 +21,7 @@ namespace Sapphire.Commands
 
             kernel.Register(Component.For<IBus>()
                                      .ImplementedBy<DispatchingCommandBus>()
-                                     .LifestyleSingleton());
+                                     .LifestyleTransient());
         }
 
         public void Terminate()
