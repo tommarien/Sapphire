@@ -55,6 +55,7 @@
     <Compile Include="Commands\ICommandDispatcher.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
     <Compile Include="Commands\ICommandHandlerFactory.cs" />
+    <Compile Include="KernelExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
