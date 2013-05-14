@@ -55,6 +55,15 @@
     <Compile Include="Commands\ICommandDispatcher.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
     <Compile Include="Commands\ICommandHandlerFactory.cs" />
+    <Compile Include="DomainEvents.cs" />
+    <Compile Include="EventDispatchers\CollectingEventDispatcher.cs" />
+    <Compile Include="EventDispatchers\DispatchToRegisteredHandlersEventDispatcher.cs" />
+    <Compile Include="EventDispatchers\NullEventDispatcher.cs" />
+    <Compile Include="EventingFacility.cs" />
+    <Compile Include="IEvent.cs" />
+    <Compile Include="IEventDispatcher.cs" />
+    <Compile Include="IEventHandler.cs" />
+    <Compile Include="IEventHandlerFactory.cs" />
     <Compile Include="KernelExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
