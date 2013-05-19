@@ -1,6 +1,6 @@
 ﻿namespace Sapphire
 {
-    public interface IEventHandler<T> where T : IEvent
+    public interface ISubscribe<T>
     {
         void On(T @event);
     }

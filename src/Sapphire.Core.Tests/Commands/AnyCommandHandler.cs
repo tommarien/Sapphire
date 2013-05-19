@@ -1,8 +1,6 @@
-﻿using Sapphire.Commands;
-
-namespace Sapphire.Tests.Commands
+﻿namespace Sapphire.Tests.Commands
 {
-    public class AnyCommandHandler : ICommandHandler<AnyCommand>
+    public class AnyCommandHandler : IHandle<AnyCommand>
     {
         public bool Handled { get; private set; }
 

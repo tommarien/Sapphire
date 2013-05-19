@@ -1,4 +1,5 @@
-﻿using Sapphire.EventDispatchers;
+﻿using Sapphire.Eventing;
+using Sapphire.Eventing.Dispatchers;
 
 namespace Sapphire
 {

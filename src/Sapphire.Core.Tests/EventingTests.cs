@@ -1,25 +1,28 @@
-﻿using Castle.Facilities.TypedFactory;
-using Castle.MicroKernel.Registration;
+﻿using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using Moq;
 using NUnit.Framework;
+using Sapphire.Eventing;
 
 namespace Sapphire.Tests
 {
     [TestFixture]
     [Category("Integration")]
-    public class EventingFacilityTests
+    public class EventingTests
     {
         [SetUp]
         public void Setup()
         {
             _windsorContainer = new WindsorContainer();
-            _windsorContainer.AddFacility<TypedFactoryFacility>();
-            _windsorContainer.AddFacility<EventingFacility>();
+            Boot.Boot.Strap(_windsorContainer);
 
-            _anyEventHandler = Mock.Of<IEventHandler<AnyEvent>>();
+            _anyEventHandler = Mock.Of<ISubscribe<AnyEvent>>();
 
-            _windsorContainer.Register(Component.For<IEventHandler<AnyEvent>>().Instance(_anyEventHandler));
+            _windsorContainer.Register(Component.For<ISubscribe<AnyEvent>>().Instance(_anyEventHandler));
+
+            IEventDispatcher dispatcher = _windsorContainer.Resolve<IEventDispatcher>();
+
+            DomainEvents.Dispatcher = dispatcher;
         }
 
         [TearDown]
@@ -28,7 +31,7 @@ namespace Sapphire.Tests
             _windsorContainer.Dispose();
         }
 
-        private IEventHandler<AnyEvent> _anyEventHandler;
+        private ISubscribe<AnyEvent> _anyEventHandler;
         private IWindsorContainer _windsorContainer;
 
         [Test]

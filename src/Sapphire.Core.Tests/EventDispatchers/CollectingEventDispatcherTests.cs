@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using NUnit.Framework;
-using Sapphire.EventDispatchers;
+using Sapphire.Eventing.Dispatchers;
 
 namespace Sapphire.Tests.EventDispatchers
 {

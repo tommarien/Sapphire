@@ -1,6 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Sapphire.Commands;
+using Sapphire.Commanding;
 
 namespace Sapphire.Tests.Commands
 {

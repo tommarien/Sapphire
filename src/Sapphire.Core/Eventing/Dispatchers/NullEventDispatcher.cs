@@ -1,4 +1,4 @@
-﻿namespace Sapphire.EventDispatchers
+﻿namespace Sapphire.Eventing.Dispatchers
 {
     public class NullEventDispatcher : IEventDispatcher
     {

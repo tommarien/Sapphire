@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
-using Sapphire.EventDispatchers;
+using Sapphire.Eventing;
+using Sapphire.Eventing.Dispatchers;
 
 namespace Sapphire.Tests.EventDispatchers
 {
@@ -12,23 +13,23 @@ namespace Sapphire.Tests.EventDispatchers
         [SetUp]
         public void Setup()
         {
-            _eventHandlerFactory = Mock.Of<IEventHandlerFactory>();
-            _dispatcher = new DispatchToRegisteredHandlersEventDispatcher(_eventHandlerFactory);
+            _subscriberFactory = Mock.Of<ISubscriberFactory>();
+            _dispatcher = new DispatchToSubscribersEventDispatcher(_subscriberFactory);
 
-            _registeredEventHandlers = new List<IEventHandler<AnyEvent>>
+            _registeredEventHandlers = new List<ISubscribe<AnyEvent>>
                 {
-                    Mock.Of<IEventHandler<AnyEvent>>(),
-                    Mock.Of<IEventHandler<AnyEvent>>()
+                    Mock.Of<ISubscribe<AnyEvent>>(),
+                    Mock.Of<ISubscribe<AnyEvent>>()
                 };
 
-            Mock.Get(_eventHandlerFactory)
-                .Setup(f => f.GetHandlers<AnyEvent>())
+            Mock.Get(_subscriberFactory)
+                .Setup(f => f.GetSubscribers<AnyEvent>())
                 .Returns(_registeredEventHandlers.ToArray);
         }
 
-        private IEventHandlerFactory _eventHandlerFactory;
-        private DispatchToRegisteredHandlersEventDispatcher _dispatcher;
-        private List<IEventHandler<AnyEvent>> _registeredEventHandlers;
+        private ISubscriberFactory _subscriberFactory;
+        private DispatchToSubscribersEventDispatcher _dispatcher;
+        private List<ISubscribe<AnyEvent>> _registeredEventHandlers;
 
         [Test]
         public void It_Should_execute_all_registered_handlers()
@@ -46,7 +47,7 @@ namespace Sapphire.Tests.EventDispatchers
         {
             _dispatcher.Dispatch(new AnyEvent());
 
-            Mock.Get(_eventHandlerFactory).Verify(x => x.GetHandlers<AnyEvent>());
+            Mock.Get(_subscriberFactory).Verify(x => x.GetSubscribers<AnyEvent>());
         }
 
         [Test]
@@ -54,8 +55,8 @@ namespace Sapphire.Tests.EventDispatchers
         {
             _dispatcher.Dispatch(new AnyEvent());
 
-            Mock.Get(_eventHandlerFactory).Verify(f => f.Release(_registeredEventHandlers[0]));
-            Mock.Get(_eventHandlerFactory).Verify(f => f.Release(_registeredEventHandlers[1]));
+            Mock.Get(_subscriberFactory).Verify(f => f.Release(_registeredEventHandlers[0]));
+            Mock.Get(_subscriberFactory).Verify(f => f.Release(_registeredEventHandlers[1]));
         }
 
         [Test]
@@ -67,8 +68,8 @@ namespace Sapphire.Tests.EventDispatchers
 
             Assert.Throws<InvalidOperationException>(() => _dispatcher.Dispatch(new AnyEvent()));
 
-            Mock.Get(_eventHandlerFactory).Verify(f => f.Release(_registeredEventHandlers[0]));
-            Mock.Get(_eventHandlerFactory).Verify(f => f.Release(_registeredEventHandlers[1]));
+            Mock.Get(_subscriberFactory).Verify(f => f.Release(_registeredEventHandlers[0]));
+            Mock.Get(_subscriberFactory).Verify(f => f.Release(_registeredEventHandlers[1]));
         }
     }
 }

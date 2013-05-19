@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Sapphire.Commands
+namespace Sapphire.Commanding
 {
     public class DispatchingCommandBus : IBus
     {

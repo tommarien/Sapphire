@@ -1,7 +1,7 @@
 ﻿using System;
 using Moq;
 using NUnit.Framework;
-using Sapphire.Commands;
+using Sapphire.Commanding;
 
 namespace Sapphire.Tests.Commands
 {
@@ -64,7 +64,7 @@ namespace Sapphire.Tests.Commands
         [Test]
         public void Dispatch_Should_release_the_commandhandler_no_matter_what()
         {
-            var commandhandler = Mock.Of<ICommandHandler<AnyCommand>>();
+            var commandhandler = Mock.Of<IHandle<AnyCommand>>();
 
             Mock.Get(commandhandler)
                 .Setup(h => h.Handle(It.IsAny<AnyCommand>()))

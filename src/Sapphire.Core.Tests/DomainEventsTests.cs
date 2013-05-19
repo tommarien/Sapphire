@@ -1,6 +1,7 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Sapphire.EventDispatchers;
+using Sapphire.Eventing;
+using Sapphire.Eventing.Dispatchers;
 
 namespace Sapphire.Tests
 {

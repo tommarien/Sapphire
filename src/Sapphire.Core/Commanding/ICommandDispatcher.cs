@@ -1,4 +1,4 @@
-﻿namespace Sapphire.Commands
+﻿namespace Sapphire.Commanding
 {
     public interface ICommandDispatcher
     {

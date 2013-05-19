@@ -1,4 +1,4 @@
-﻿namespace Sapphire
+﻿namespace Sapphire.Eventing
 {
     public interface IEventDispatcher
     {

@@ -1,8 +1,8 @@
-﻿namespace Sapphire.Commands
+﻿namespace Sapphire.Commanding
 {
     public interface ICommandHandlerFactory
     {
-        ICommandHandler<T> CreateHandler<T>() where T : ICommand;
+        IHandle<T> CreateHandler<T>() where T : ICommand;
         void Release(object handler);
     }
 }

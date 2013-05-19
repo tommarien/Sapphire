@@ -32,12 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\..\packages\Castle.Core.3.2.0\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Windsor">
-      <HintPath>..\..\packages\Castle.Windsor.3.2.0\lib\net45\Castle.Windsor.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,29 +41,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CommandingFacility.cs" />
-    <Compile Include="Commands\DispatchingCommandBus.cs" />
-    <Compile Include="Commands\DirectExecutingCommandDispatcher.cs" />
-    <Compile Include="Commands\IBus.cs" />
-    <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="Commands\ICommandDispatcher.cs" />
-    <Compile Include="Commands\ICommandHandler.cs" />
-    <Compile Include="Commands\ICommandHandlerFactory.cs" />
+    <Compile Include="Commanding\DispatchingCommandBus.cs" />
+    <Compile Include="Commanding\DirectExecutingCommandDispatcher.cs" />
+    <Compile Include="IBus.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="Commanding\ICommandDispatcher.cs" />
+    <Compile Include="Commanding\ICommandHandlerFactory.cs" />
     <Compile Include="DomainEvents.cs" />
-    <Compile Include="EventDispatchers\CollectingEventDispatcher.cs" />
-    <Compile Include="EventDispatchers\DispatchToRegisteredHandlersEventDispatcher.cs" />
-    <Compile Include="EventDispatchers\NullEventDispatcher.cs" />
-    <Compile Include="EventingFacility.cs" />
+    <Compile Include="Eventing\Dispatchers\CollectingEventDispatcher.cs" />
+    <Compile Include="Eventing\Dispatchers\DispatchToSubscribersEventDispatcher.cs" />
+    <Compile Include="Eventing\Dispatchers\NullEventDispatcher.cs" />
     <Compile Include="IEvent.cs" />
-    <Compile Include="IEventDispatcher.cs" />
-    <Compile Include="IEventHandler.cs" />
-    <Compile Include="IEventHandlerFactory.cs" />
-    <Compile Include="KernelExtensions.cs" />
+    <Compile Include="Eventing\IEventDispatcher.cs" />
+    <Compile Include="Eventing\ISubscriberFactory.cs" />
+    <Compile Include="IHandle.cs" />
+    <Compile Include="ISubscribe.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

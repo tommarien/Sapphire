@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Sapphire.EventDispatchers
+namespace Sapphire.Eventing.Dispatchers
 {
     public class CollectingEventDispatcher : IEventDispatcher, IEnumerable<IEvent>
     {

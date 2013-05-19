@@ -1,4 +1,4 @@
-﻿namespace Sapphire.Commands
+﻿namespace Sapphire.Commanding
 {
     public class DirectExecutingCommandDispatcher : ICommandDispatcher
     {
@@ -11,7 +11,7 @@
 
         public void Dispatch<T>(T command) where T : ICommand
         {
-            ICommandHandler<T> handler = _factory.CreateHandler<T>();
+            IHandle<T> handler = _factory.CreateHandler<T>();
 
             try
             {

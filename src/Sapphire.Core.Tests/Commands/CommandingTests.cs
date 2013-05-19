@@ -1,25 +1,22 @@
-﻿using Castle.Facilities.TypedFactory;
-using Castle.MicroKernel.Registration;
+﻿using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using NUnit.Framework;
-using Sapphire.Commands;
 
 namespace Sapphire.Tests.Commands
 {
     [TestFixture]
     [Category("Integration")]
-    public class CommandFacilityTests
+    public class CommandingTests
     {
         [SetUp]
         public void Setup()
         {
             _windsorContainer = new WindsorContainer();
-            _windsorContainer.AddFacility<TypedFactoryFacility>();
-            _windsorContainer.AddFacility<CommandingFacility>();
+            Boot.Boot.Strap(_windsorContainer);
 
             _anyCommandHandler = new AnyCommandHandler();
 
-            _windsorContainer.Register(Component.For<ICommandHandler<AnyCommand>>().Instance(_anyCommandHandler));
+            _windsorContainer.Register(Component.For<IHandle<AnyCommand>>().Instance(_anyCommandHandler));
         }
 
         [TearDown]
